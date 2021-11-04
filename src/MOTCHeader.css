@@ -1,0 +1,126 @@
+#MOTCHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 24px;
+  background-color: #000;
+}
+
+#MOTCHeader > .left-block {
+  display: flex;
+  align-items: center;
+}
+
+#MOTCHeader > .left-block > .logo {
+  display: inline-block;
+  cursor: pointer;
+}
+
+#MOTCHeader > .left-block > .logo > img {
+  height: 48px;
+}
+
+#MOTCHeader > .left-block > .title {
+  display: inline-block;
+  padding-left: 12px;
+  color: #f0f6fc;
+  font-weight: bold;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#MOTCHeader > .left-block > .title > .tw {
+  font-size: 20px;
+}
+
+#MOTCHeader > .left-block > .title > .en {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#MOTCHeader > .left-block > .app-block-icon {
+  margin-left: 12px;
+  font-size: 24px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+#MOTCHeader > .left-block > .app-block-icon:hover {
+  color: #ececec;
+}
+
+#MOTCHeader > .action {
+  cursor: pointer;
+  color: #ececec;
+  font-weight: 600;
+}
+
+#MOTCHeader > .action:hover {
+  color: #fff;
+}
+
+#MOTCHeader-mobile {
+  background-color: #000;
+}
+
+#MOTCHeader-mobile > .logo {
+  text-align: center;
+  padding-top: 12px;
+}
+
+#MOTCHeader-mobile > .logo > img {
+  max-width: 150px;
+  width: 100%;
+}
+
+#MOTCHeader-mobile > .menu-bar {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#MOTCHeader-mobile > .menu-bar > i {
+  color: #f0f6fc;
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: normal;
+}
+
+#MOTCHeader-mobile > .menu-bar > i:hover {
+  color: #fff;
+}
+
+#MOTCHeader-mobile > .title {
+  color: #f0f6fc;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+#MOTCHeader-mobile > .title > .tw {
+  font-size: 20px;
+}
+
+#MOTCHeader-mobile > .title > .tw {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#app-block {
+  text-align: center;
+}
+
+#app-block > .app-icon {
+  max-width: 80px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 5px 28px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 28px 0 rgba(0, 0, 0, 0.2);
+}
+
+#logo-text {
+  cursor: pointer;
+}

@@ -7,14 +7,14 @@ import PropTypes from "prop-types";
 import { TieredMenu } from "primereact/tieredmenu";
 import { Sidebar } from "primereact/sidebar";
 import { Menu } from "primereact/menu";
-import "./index.css";
+import "src/MOTCHeader.css";
 
 class MOTCHeader extends Component {
   UserMenuRef = React.createRef();
 
   constructor(props) {
     super(props);
-    this.state = { userVisible: false };
+    this.state = { visible: false };
   }
 
   renderUserMenu = () => {
@@ -26,9 +26,9 @@ class MOTCHeader extends Component {
   };
 
   renderLogoText = () => {
-    const { title, logo, subTitle, onClickLogo } = this.props;
+    const { title, logo, subTitle } = this.props;
     return (
-      <div id="logo-text" onClick={onClickLogo}>
+      <React.Fragment>
         <div className="logo">
           <img src={logo} alt={title} />
         </div>
@@ -37,13 +37,15 @@ class MOTCHeader extends Component {
           <br />
           <span className="en">{subTitle}</span>
         </div>
-      </div>
+      </React.Fragment>
     );
   };
 
   render() {
-    const { onClickMenu, username } = this.props;
-    const { userVisible } = this.state;
+    const { onClickMenu, username, isMobile } = this.props;
+    const { visible } = this.state;
+
+    const onClickUser = (bool) => this.setState({ visible: bool });
 
     if (isMobile) {
       return (
@@ -55,14 +57,15 @@ class MOTCHeader extends Component {
             </div>
             <div className="p-col-2" style={{ padding: 0 }}>
               <div className="menu-bar">
-                <i
-                  className="pi pi-user"
-                  onClick={() => this.setState({ userVisible: true })}
-                />
+                <i className="pi pi-user" onClick={() => onClickUser(true)} />
               </div>
             </div>
           </div>
-          <Sidebar visible={userVisible} position="right" onHide={onHideUser}>
+          <Sidebar
+            position="right"
+            visible={visible}
+            onHide={() => onClickUser(false)}
+          >
             {this.renderUserMenu()}
           </Sidebar>
         </div>
@@ -71,21 +74,19 @@ class MOTCHeader extends Component {
 
     return (
       <div id="MOTCHeader">
-        <div className="left-block">
-          <div onClick={() => onClickMenu("/")}>{this.renderLogoText()}</div>
+        <div className="left-block" onClick={() => onClickMenu("/")}>
+          {this.renderLogoText()}
         </div>
-        <div>
-          <div
-            className="action"
-            onClick={(e) => this.UserMenuRef.current.toggle(e)}
-            aria-haspopup
-            aria-controls="overlay_tmenu"
-          >
-            <span className="mr-6">{username}</span>
-            <i className="pi pi-chevron-down" />
-          </div>
-          {this.renderUserMenu()}
+        <div
+          className="action"
+          onClick={(e) => this.UserMenuRef.current.toggle(e)}
+          aria-haspopup
+          aria-controls="overlay_tmenu"
+        >
+          <span style={{ marginRight: 6 }}>{username}</span>
+          <i className="pi pi-chevron-down" />
         </div>
+        {this.renderUserMenu()}
       </div>
     );
   }
@@ -97,7 +98,7 @@ MOTCHeader.propTypes = {
   isMobile: PropTypes.bool,
   logo: PropTypes.any,
   menu: PropTypes.array,
-  username: "",
+  username: PropTypes.string,
   onClickLogo: PropTypes.func,
   onClickMenu: PropTypes.func,
 };

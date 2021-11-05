@@ -22,7 +22,7 @@ function MOTCHeaderDemo(){
             <div>
                 <MOTCHeader
                     title="Test"
-                    subTitle="SubTitle
+                    subTitle="SubTitle"
                     isMobile={false}
                     logo={null}
                     username="User"

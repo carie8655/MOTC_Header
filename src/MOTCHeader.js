@@ -42,7 +42,7 @@ class MOTCHeader extends Component {
   };
 
   render() {
-    const { onClickMenu, username, isMobile } = this.props;
+    const { onClickMenu, username, isMobile, menu } = this.props;
     const { visible } = this.state;
 
     const onClickUser = (bool) => this.setState({ visible: bool });
@@ -55,18 +55,20 @@ class MOTCHeader extends Component {
             <div className="p-col-8" onClick={() => onGoToRoute("/")}>
               {this.renderLogoText()}
             </div>
-            <div className="p-col-2" style={{ padding: 0 }}>
-              <div className="menu-bar">
-                <i className="pi pi-user" onClick={() => onClickUser(true)} />
+            {username !== "" && (
+              <div className="p-col-2" style={{ padding: 0 }}>
+                <div className="menu-bar">
+                  <i className="pi pi-user" onClick={() => onClickUser(true)} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <Sidebar
             position="right"
             visible={visible}
             onHide={() => onClickUser(false)}
           >
-            {this.renderUserMenu()}
+            {menu.length > 0 && this.renderUserMenu()}
           </Sidebar>
         </div>
       );
@@ -77,16 +79,18 @@ class MOTCHeader extends Component {
         <div className="left-block" onClick={() => onClickMenu("/")}>
           {this.renderLogoText()}
         </div>
-        <div
-          className="action"
-          onClick={(e) => this.UserMenuRef.current.toggle(e)}
-          aria-haspopup
-          aria-controls="overlay_tmenu"
-        >
-          <span style={{ marginRight: 6 }}>{username}</span>
-          <i className="pi pi-chevron-down" />
-        </div>
-        {this.renderUserMenu()}
+        {username !== "" && (
+          <div
+            className="action"
+            onClick={(e) => this.UserMenuRef.current.toggle(e)}
+            aria-haspopup
+            aria-controls="overlay_tmenu"
+          >
+            <span style={{ marginRight: 6 }}>{username}</span>
+            <i className="pi pi-chevron-down" />
+          </div>
+        )}
+        {menu.length > 0 && this.renderUserMenu()}
       </div>
     );
   }

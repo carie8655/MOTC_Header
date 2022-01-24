@@ -14,7 +14,7 @@ class MOTCHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { visible: false, menuVisible: false };
   }
 
   renderUserMenu = () => {
@@ -42,16 +42,24 @@ class MOTCHeader extends Component {
   };
 
   render() {
-    const { onClickMenu, username, isMobile, menu } = this.props;
-    const { visible } = this.state;
+    const { onClickMenu, username, isMobile, menu, siderChild } = this.props;
+    const { visible, menuVisible } = this.state;
 
     const onClickUser = (bool) => this.setState({ visible: bool });
+    const onClickMenubar = (bool) => this.setState({ menuVisible: bool });
 
     if (isMobile) {
       return (
         <div id="MOTCHeader-mobile">
           <div className="p-grid w-100">
-            <div className="p-col-2" style={{ padding: 0 }} />
+            <div className="p-col-2" style={{ padding: 0 }}>
+              <div className="menu-bar">
+                <i
+                  className="pi pi-bars"
+                  onClick={() => onClickMenubar(true)}
+                />
+              </div>
+            </div>
             <div className="p-col-8" onClick={() => onGoToRoute("/")}>
               {this.renderLogoText()}
             </div>
@@ -69,6 +77,13 @@ class MOTCHeader extends Component {
             onHide={() => onClickUser(false)}
           >
             {menu.length > 0 && this.renderUserMenu()}
+          </Sidebar>
+          <Sidebar
+            position="left"
+            visible={menuVisible}
+            onHide={() => onClickMenubar(false)}
+          >
+            {siderChild ? siderChild : null}
           </Sidebar>
         </div>
       );

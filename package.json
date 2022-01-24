@@ -1,6 +1,6 @@
 {
   "name": "react-prime-motc-header",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "main": "./lib/MOTCHeader.js",
   "repository": {
     "type": "git",

@@ -25,6 +25,7 @@ module.exports = {
       },
     ],
   },
+  // prettier-ignore
   resolve: {
     alias: {
       src: path.resolve(__dirname, "./src"),
@@ -33,6 +34,10 @@ module.exports = {
       primereact: path.resolve(__dirname, "./node_modules/primereact"),
       primeicons: path.resolve(__dirname, "./node_modules/primeicons"),
       primeflex: path.resolve(__dirname, "./node_modules/primeflex"),
+      "@fortawesome/fontawesome-svg-core": path.resolve(__dirname, "./node_modules/@fortawesome/fontawesome-svg-core"),
+      "@fortawesome/free-regular-svg-icons": path.resolve(__dirname, "./node_modules/@fortawesome/free-regular-svg-icons"),
+      "@fortawesome/free-solid-svg-icons": path.resolve(__dirname, "./node_modules/@fortawesome/free-solid-svg-icons"),
+      "@fortawesome/react-fontawesome": path.resolve(__dirname, "./node_modules/@fortawesome/react-fontawesome"),
     },
   },
   externals: {

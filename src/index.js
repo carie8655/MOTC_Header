@@ -6,8 +6,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { TieredMenu } from "primereact/tieredmenu";
 import { Sidebar } from "primereact/sidebar";
+import { Avatar } from "primereact/avatar";
 import { Menu } from "primereact/menu";
-import "src/MOTCHeader.css";
+import { faDisplay, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import "./index.css";
 
 class MOTCHeader extends Component {
   UserMenuRef = React.createRef();
@@ -51,8 +54,8 @@ class MOTCHeader extends Component {
     if (isMobile) {
       return (
         <div id="MOTCHeader-mobile">
-          <div className="p-grid w-100">
-            <div className="p-col-2" style={{ padding: 0 }}>
+          <div className="grid w-100">
+            <div className="col-2" style={{ padding: 0 }}>
               <div className="menu-bar">
                 <i
                   className="pi pi-bars"
@@ -60,11 +63,11 @@ class MOTCHeader extends Component {
                 />
               </div>
             </div>
-            <div className="p-col-8" onClick={() => onGoToRoute("/")}>
+            <div className="col-8" onClick={() => onGoToRoute("/")}>
               {this.renderLogoText()}
             </div>
             {username !== "" && (
-              <div className="p-col-2" style={{ padding: 0 }}>
+              <div className="col-2" style={{ padding: 0 }}>
                 <div className="menu-bar">
                   <i className="pi pi-user" onClick={() => onClickUser(true)} />
                 </div>
@@ -79,9 +82,11 @@ class MOTCHeader extends Component {
             {menu.length > 0 && this.renderUserMenu()}
           </Sidebar>
           <Sidebar
+            className="header-drawer"
             position="left"
             visible={menuVisible}
             onHide={() => onClickMenubar(false)}
+            showCloseIcon={false}
           >
             {siderChild ? siderChild : null}
           </Sidebar>
@@ -94,17 +99,23 @@ class MOTCHeader extends Component {
         <div className="left-block" onClick={() => onClickMenu("/")}>
           {this.renderLogoText()}
         </div>
-        {username !== "" && (
-          <div
-            className="action"
-            onClick={(e) => this.UserMenuRef.current.toggle(e)}
-            aria-haspopup
-            aria-controls="overlay_tmenu"
-          >
-            <span style={{ marginRight: 6 }}>{username}</span>
-            <i className="pi pi-chevron-down" />
+        <div className="right-block">
+          <div className="action">
+            <Icon icon={faDisplay} />
+            <span>設備監控</span>
           </div>
-        )}
+          {username !== "" && (
+            <div
+              className="action"
+              onClick={(e) => this.UserMenuRef.current.toggle(e)}
+              aria-haspopup
+              aria-controls="overlay_tmenu"
+            >
+              <Avatar label="總" className="avatar" shape="circle" />
+              <Icon icon={faCaretDown} />
+            </div>
+          )}
+        </div>
         {menu.length > 0 && this.renderUserMenu()}
       </div>
     );
@@ -118,7 +129,7 @@ MOTCHeader.propTypes = {
   logo: PropTypes.any,
   menu: PropTypes.array,
   username: PropTypes.string,
-  onClickLogo: PropTypes.func,
+  // onClickLogo: PropTypes.func,
   onClickMenu: PropTypes.func,
 };
 
@@ -129,7 +140,7 @@ MOTCHeader.defaultProps = {
   logo: null,
   menu: [],
   username: "",
-  onClickLogo: () => {},
+  // onClickLogo: () => {},
   onClickMenu: () => {},
 };
 

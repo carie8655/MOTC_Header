@@ -2,10 +2,10 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
-  entry: "./src/MOTCHeader.js",
+  entry: "./src/index.js",
   output: {
     path: path.resolve("lib"),
-    filename: "MOTCHeader.js",
+    filename: "index.js",
     libraryTarget: "commonjs2",
   },
   module: {

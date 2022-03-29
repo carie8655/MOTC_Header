@@ -4,10 +4,13 @@
   justify-content: space-between;
   height: 64px;
   padding: 0 24px;
-  background-color: #000;
+  background-color: #24292f;
+  z-index: 100;
+  box-shadow: 0 4px 5px -2px #666;
 }
 
 #MOTCHeader > .left-block {
+  flex: auto;
   display: flex;
   align-items: center;
 }
@@ -18,7 +21,7 @@
 }
 
 #MOTCHeader > .left-block > .logo > img {
-  height: 48px;
+  height: 32px;
 }
 
 #MOTCHeader > .left-block > .title {
@@ -28,6 +31,11 @@
   font-weight: bold;
   vertical-align: top;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#MOTCHeader > .left-block > .title:hover {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 #MOTCHeader > .left-block > .title > .tw {
@@ -39,13 +47,39 @@
   font-weight: 300;
 }
 
-#MOTCHeader > .action {
-  cursor: pointer;
-  color: #ececec;
-  font-weight: 600;
+#MOTCHeader > .right-block {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
-#MOTCHeader > .action:hover {
+#MOTCHeader > .right-block > .action {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  flex: 0 0 auto;
+  transition: all 0.2s ease-in-out;
+}
+
+#MOTCHeader > .right-block > .action > svg {
+  margin-right: 3px;
+}
+
+#MOTCHeader > .right-block > .action > .avatar {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: #666;
+  margin-right: 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+#MOTCHeader > .right-block > .action:hover > .avatar {
+  color: #ffffff;
+  background-color: #2196f3;
+}
+
+#MOTCHeader > .right-block > .action:hover {
   color: #fff;
 }
 
@@ -95,4 +129,43 @@
 #MOTCHeader-mobile .title .en {
   font-size: 14px;
   font-weight: 300;
+}
+
+.header-drawer {
+  position: relative;
+}
+
+.header-drawer .p-sidebar-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  height: 64px;
+}
+
+.header-drawer .p-sidebar-content {
+  padding: 0px;
+}
+
+@media (max-width: 992px) {
+  #MOTCHeader-mobile .menu-bar i {
+    color: #f0f6fc;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: normal;
+  }
+
+  #MOTCHeader-mobile .logo img {
+    max-width: 100px;
+    width: 100%;
+  }
+
+  #MOTCHeader-mobile .title .tw {
+    font-size: 18px;
+  }
+
+  #MOTCHeader-mobile .title .en {
+    font-size: 12px;
+    font-weight: 300;
+  }
 }
